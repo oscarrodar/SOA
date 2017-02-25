@@ -10,11 +10,9 @@ $./rastreador [rastreador param] programa [programa params]
 
 _'rastreador param'_ puede tomar uno de los siguientes valores:
 
-* -v	
-Muestra la información de todos los systems calls conforme se van llamando. Se muestra el nombre del System Call, el PID del proceso que la invoca y los valores en los registros. Se muestra la info tanto cuando se entra al System Call como cuando se sale
+* **-v** - Muestra la información de todos los systems calls conforme se van llamando. Se muestra el nombre del System Call, el PID del proceso que la invoca y los valores en los registros. Se muestra la info tanto cuando se entra al System Call como cuando se sale
 
-* -V
-Funciona igual que -v, la diferencia es que se hace una pausa entre cada System Call entry/exit de modo que el usuario debe presionar ENTER para continuar. El usuario puede escribir 'e' seguido de un Enter para salir del modo -V. Si no se especifica ninguno de los parámetros anteriores, el programa simplemente mostrará la tabla final.
+* **-V** - Funciona igual que -v, la diferencia es que se hace una pausa entre cada System Call entry/exit de modo que el usuario debe presionar ENTER para continuar. El usuario puede escribir 'e' seguido de un Enter para salir del modo -V. Si no se especifica ninguno de los parámetros anteriores, el programa simplemente mostrará la tabla final.
 
 _'programa'_ corresponde al nombre del programa que se desea rastrear
 

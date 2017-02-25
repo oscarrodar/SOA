@@ -66,26 +66,26 @@ int main(int argc, char* argv[]) {
       ptrace(PTRACE_GETREGS, child, NULL, &regs);
       char keyPressed;
       
-	  if (ultima == regs.orig_eax){
+	  if (ultima == regs.orig_rax){
 		retorno = 1;
 		ultima = 0;
 	  }else{
-		ultima = regs.orig_eax;
+		ultima = regs.orig_rax;
 		retorno = 0;
 	  }
 
 	 if (!retorno){
-		addToTable(regs.orig_eax, sysCalls, sysCallsContador);
+		addToTable(regs.orig_rax, sysCalls, sysCallsContador);
 	}
       
       if (rastrear != 0){
 		if (!retorno){
-			fprintf(stderr, "Entrando a System call %ld\tNombre: %s\tPID: %d\n", regs.orig_eax, getSystemCallName(regs.orig_eax), child);
-			fprintf(stderr, "Valores en los registros: EBX:%ld\tECX:%ld\tEDX:%ld\n", regs.ebx, regs.ecx, regs.edx);
+			fprintf(stderr, "Entrando a System call %ld\tNombre: %s\tPID: %d\n", regs.orig_rax, getSystemCallName(regs.orig_rax), child);
+			fprintf(stderr, "Valores en los registros: EBX:%ld\tECX:%ld\tEDX:%ld\n", regs.rbx, regs.rcx, regs.rdx);
 			
 		}else{
-			fprintf(stderr, "Saliendo de System call %ld\tNombre: %s\tPID: %d\n", regs.orig_eax, getSystemCallName(regs.orig_eax), child);
-			fprintf(stderr, "Valores en los registros: EBX:%ld\tECX:%ld\tEDX:%ld\n", regs.ebx, regs.ecx, regs.edx);
+			fprintf(stderr, "Saliendo de System call %ld\tNombre: %s\tPID: %d\n", regs.orig_rax, getSystemCallName(regs.orig_rax), child);
+			fprintf(stderr, "Valores en los registros: EBX:%ld\tECX:%ld\tEDX:%ld\n", regs.rbx, regs.rcx, regs.rdx);
 		}
 		if (rastrear == 2){	 
 			fprintf(stderr, "Presione ENTER para continuar...");

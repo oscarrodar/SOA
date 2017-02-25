@@ -10,4 +10,4 @@
     * Readme (Explicación de cómo se usa el programa)
 + Asunto del correo: _[SOA] Tarea Corta 1 - Oscar Rodríguez Aroyo_ 
 
-## Tarea 2 - 
+## Tarea 2 - Tiempo Lógico

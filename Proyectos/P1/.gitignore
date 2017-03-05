@@ -1,0 +1,16 @@
+.DS_Store
+
+*.o
+*.out
+*.pem
+
+# IntelliJ
+*.iml
+*.ipr
+*.iws
+*.idea/
+
+CMakeLists.txt
+cmake-build-debug/
+
+target/

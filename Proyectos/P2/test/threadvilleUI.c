@@ -320,7 +320,7 @@ static gboolean on_expose_event (GtkWidget *widget,
 {
   cairo_t *cr;///contexto de cairo
   int width, height;//altura y anchura
-  cr = gdk_cairo_create (widget->window);//crea el conexto
+  cr = gdk_cairo_create (widget);//crea el conexto
   //gtk_window_get_size(GTK_WINDOW(widget), &width, &height);///obtengo el ancho y el alto de la ventana
   cairo_set_source_surface(cr, image, 10, 10);
   cairo_paint(cr);
@@ -399,7 +399,7 @@ static gboolean on_expose_event (GtkWidget *widget,
    Consider this the main loop (framerate controlled) */
 static gboolean time_handler(GtkWidget *widget)
 {
-  if (widget->window == NULL) 
+  if (widget == NULL) 
 	return FALSE;
   gtk_widget_queue_draw(widget);
   return TRUE;

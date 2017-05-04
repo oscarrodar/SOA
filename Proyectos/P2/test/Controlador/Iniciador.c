@@ -28,37 +28,8 @@ int main(){ // Boton iniciar en interfaz. Implementar junto con el terminar (fin
 		pthread_join(threads[i],NULL);
 	}
 
-
-/*
-//	Vehiculo vehiculo = crearVehiculo(AUTO_ROJO);
-
-//	Vehiculo vehiculo2 = crearVehiculo(2);
-
-
-//	Vehiculo vehiculo3 = crearVehiculo(AUTO_AZUL);
-	Vehiculo vehiculo4 = crearVehiculo(BUS_VERDE);
-	Vehiculo vehiculo5 = crearVehiculo(BUS_ROJO);
-
-//	pthread_create(&ponerVehiculoNormaltTh, NULL, encenderAutomovil, (void*)&vehiculo);	
-	pthread_create(&ponerVehiculoNormaltTh5, NULL, encenderAutomovil, (void*)&vehiculo5); 	
-//	pthread_create(&ponerVehiculoNormaltTh2, NULL, encenderAutomovil, (void*)&vehiculo2);
-//	pthread_create(&ponerVehiculoNormaltTh3, NULL, encenderAutomovil, (void*)&vehiculo3);
-	pthread_create(&ponerVehiculoNormaltTh4, NULL, encenderAutomovil, (void*)&vehiculo4);
-	
-
-//	pthread_join(ponerVehiculoNormaltTh2,NULL);
-//	pthread_join(ponerVehiculoNormaltTh,NULL);
-//	pthread_join(ponerVehiculoNormaltTh3,NULL);
-	pthread_join(ponerVehiculoNormaltTh4,NULL);
-	pthread_join(ponerVehiculoNormaltTh5,NULL);
-	//threadVilleStart();
-*/
-	/**********Vista temporal************/
-	//liberarFrameBuffer();
-
 	return 0;
 }
-
 
 void iniciar(){
 	/**********Vista temporal************/
@@ -88,8 +59,6 @@ void * vehiculoNormal(){
 void crearUnVehiculoNormal(){
   pthread_create(&ponerVehiculoNormaltTh, NULL, vehiculoNormal, NULL);//esto deberia esperar por la interfaz para crearlo
 }
-
-
 
 void threadVilleStart(){
  crearUnVehiculoNormal();

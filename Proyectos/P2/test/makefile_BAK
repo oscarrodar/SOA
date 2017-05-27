@@ -1,3 +1,0 @@
-all:
-	gcc -pthread Modelo/Calles.h Modelo/GrafoCalles.h Modelo/Iniciador.h Modelo/Mapper.h Modelo/Vehiculo.h Controlador/Calles.c Vista/FrameBufferVista.c	Controlador/Mapper.c	Controlador/FabricaVehiculos.c	Controlador/Iniciador.c	Controlador/Vehiculo.c -lm	-o	ThreadVille
-

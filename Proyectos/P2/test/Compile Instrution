@@ -1,1 +1,0 @@
-gcc `pkg-config gtk+-2.0 --cflags` threadvilleUI.c -o threadvilleUI `pkg-config gtk+-2.0 --libs`

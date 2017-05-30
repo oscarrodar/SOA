@@ -1,0 +1,1170 @@
+
+%% bare_adv.tex
+%% V1.4a
+%% 2014/09/17
+%% by Michael Shell
+%% See: 
+%% http://www.michaelshell.org/
+%% for current contact information.
+%%
+%% This is a skeleton file demonstrating the advanced use of IEEEtran.cls
+%% (requires IEEEtran.cls version 1.8a or later) with an IEEE Computer
+%% Society journal paper.
+%%
+%% Support sites:
+%% http://www.michaelshell.org/tex/ieeetran/
+%% http://www.ctan.org/tex-archive/macros/latex/contrib/IEEEtran/
+%% and
+%% http://www.ieee.org/
+
+%%*************************************************************************
+%% Legal Notice:
+%% This code is offered as-is without any warranty either expressed or
+%% implied; without even the implied warranty of MERCHANTABILITY or
+%% FITNESS FOR A PARTICULAR PURPOSE! 
+%% User assumes all risk.
+%% In no event shall IEEE or any contributor to this code be liable for
+%% any damages or losses, including, but not limited to, incidental,
+%% consequential, or any other damages, resulting from the use or misuse
+%% of any information contained here.
+%%
+%% All comments are the opinions of their respective authors and are not
+%% necessarily endorsed by the IEEE.
+%%
+%% This work is distributed under the LaTeX Project Public License (LPPL)
+%% ( http://www.latex-project.org/ ) version 1.3, and may be freely used,
+%% distributed and modified. A copy of the LPPL, version 1.3, is included
+%% in the base LaTeX documentation of all distributions of LaTeX released
+%% 2003/12/01 or later.
+%% Retain all contribution notices and credits.
+%% ** Modified files should be clearly indicated as such, including  **
+%% ** renaming them and changing author support contact information. **
+%%
+%% File list of work: IEEEtran.cls, IEEEtran_HOWTO.pdf, bare_adv.tex,
+%%                    bare_conf.tex, bare_jrnl.tex, bare_conf_compsoc.tex,
+%%                    bare_jrnl_compsoc.tex, bare_jrnl_transmag.tex
+%%*************************************************************************
+
+
+% *** Authors should verify (and, if needed, correct) their LaTeX system  ***
+% *** with the testflow diagnostic prior to trusting their LaTeX platform ***
+% *** with production work. IEEE's font choices and paper sizes can       ***
+% *** trigger bugs that do not appear when using other class files.       ***                          ***
+% The testflow support page is at:
+% http://www.michaelshell.org/tex/testflow/
+
+
+% IEEEtran V1.7 and later provides for these CLASSINPUT macros to allow the
+% user to reprogram some IEEEtran.cls defaults if needed. These settings
+% override the internal defaults of IEEEtran.cls regardless of which class
+% options are used. Do not use these unless you have good reason to do so as
+% they can result in nonIEEE compliant documents. User beware. ;)
+%
+%\newcommand{\CLASSINPUTbaselinestretch}{1.0} % baselinestretch
+%\newcommand{\CLASSINPUTinnersidemargin}{1in} % inner side margin
+%\newcommand{\CLASSINPUToutersidemargin}{1in} % outer side margin
+%\newcommand{\CLASSINPUTtoptextmargin}{1in}   % top text margin
+%\newcommand{\CLASSINPUTbottomtextmargin}{1in}% bottom text margin
+
+
+
+
+%
+%\documentclass[10pt,journal,compsoc]{IEEEtran}
+\documentclass[10pt,article]{IEEEtran}
+% If IEEEtran.cls has not been installed into the LaTeX system files,
+% manually specify the path to it like:
+% \documentclass[10pt,journal,compsoc]{../sty/IEEEtran}
+
+
+% For Computer Society journals, IEEEtran defaults to the use of 
+% Palatino/Palladio as is done in IEEE Computer Society journals.
+% To go back to Times Roman, you can use this code:
+%\renewcommand{\rmdefault}{ptm}\selectfont
+
+
+
+
+
+% Some very useful LaTeX packages include:
+% (uncomment the ones you want to load)
+
+
+
+% *** MISC UTILITY PACKAGES ***
+%
+%\usepackage{ifpdf}
+% Heiko Oberdiek's ifpdf.sty is very useful if you need conditional
+% compilation based on whether the output is pdf or dvi.
+% usage:
+% \ifpdf
+%   % pdf code
+% \else
+%   % dvi code
+% \fi
+% The latest version of ifpdf.sty can be obtained from:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/oberdiek/
+% Also, note that IEEEtran.cls V1.7 and later provides a builtin
+% \ifCLASSINFOpdf conditional that works the same way.
+% When switching from latex to pdflatex and vice-versa, the compiler may
+% have to be run twice to clear warning/error messages.
+
+
+
+
+
+
+% *** CITATION PACKAGES ***
+%
+\ifCLASSOPTIONcompsoc
+  % IEEE Computer Society needs nocompress option
+  % requires cite.sty v4.0 or later (November 2003)
+  \usepackage[nocompress]{cite}
+\else
+  % normal IEEE
+  \usepackage{cite}
+\fi
+% cite.sty was written by Donald Arseneau
+% V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
+% \cite{} output to follow that of IEEE. Loading the cite package will
+% result in citation numbers being automatically sorted and properly
+% "compressed/ranged". e.g., [1], [9], [2], [7], [5], [6] without using
+% cite.sty will become [1], [2], [5]--[7], [9] using cite.sty. cite.sty's
+% \cite will automatically add leading space, if needed. Use cite.sty's
+% noadjust option (cite.sty V3.8 and later) if you want to turn this off
+% such as if a citation ever needs to be enclosed in parenthesis.
+% cite.sty is already installed on most LaTeX systems. Be sure and use
+% version 5.0 (2009-03-20) and later if using hyperref.sty.
+% The latest version can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/cite/
+% The documentation is contained in the cite.sty file itself.
+%
+% Note that some packages require special options to format as the Computer
+% Society requires. In particular, Computer Society  papers do not use
+% compressed citation ranges as is done in typical IEEE papers
+% (e.g., [1]-[4]). Instead, they list every citation separately in order
+% (e.g., [1], [2], [3], [4]). To get the latter we need to load the cite
+% package with the nocompress option which is supported by cite.sty v4.0
+% and later.
+
+
+
+
+
+% *** GRAPHICS RELATED PACKAGES ***
+%
+\ifCLASSINFOpdf
+  % \usepackage[pdftex]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../pdf/}{../jpeg/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+\else
+  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+  % will default to the driver specified in the system graphics.cfg if no
+  % driver is specified.
+  % \usepackage[dvips]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../eps/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.eps}
+\fi
+% graphicx was written by David Carlisle and Sebastian Rahtz. It is
+% required if you want graphics, photos, etc. graphicx.sty is already
+% installed on most LaTeX systems. The latest version and documentation
+% can be obtained at: 
+% http://www.ctan.org/tex-archive/macros/latex/required/graphics/
+% Another good source of documentation is "Using Imported Graphics in
+% LaTeX2e" by Keith Reckdahl which can be found at:
+% http://www.ctan.org/tex-archive/info/epslatex/
+%
+% latex, and pdflatex in dvi mode, support graphics in encapsulated
+% postscript (.eps) format. pdflatex in pdf mode supports graphics
+% in .pdf, .jpeg, .png and .mps (metapost) formats. Users should ensure
+% that all non-photo figures use a vector format (.eps, .pdf, .mps) and
+% not a bitmapped formats (.jpeg, .png). IEEE frowns on bitmapped formats
+% which can result in "jaggedy"/blurry rendering of lines and letters as
+% well as large increases in file sizes.
+%
+% You can find documentation about the pdfTeX application at:
+% http://www.tug.org/applications/pdftex
+
+
+
+
+
+% *** MATH PACKAGES ***
+%
+%\usepackage[cmex10]{amsmath}
+% A popular package from the American Mathematical Society that provides
+% many useful and powerful commands for dealing with mathematics. If using
+% it, be sure to load this package with the cmex10 option to ensure that
+% only type 1 fonts will utilized at all point sizes. Without this option,
+% it is possible that some math symbols, particularly those within
+% footnotes, will be rendered in bitmap form which will result in a
+% document that can not be IEEE Xplore compliant!
+%
+% Also, note that the amsmath package sets \interdisplaylinepenalty to 10000
+% thus preventing page breaks from occurring within multiline equations. Use:
+%\interdisplaylinepenalty=2500
+% after loading amsmath to restore such page breaks as IEEEtran.cls normally
+% does. amsmath.sty is already installed on most LaTeX systems. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/required/amslatex/math/
+
+
+
+
+
+% *** SPECIALIZED LIST PACKAGES ***
+%\usepackage{acronym}
+% acronym.sty was written by Tobias Oetiker. This package provides tools for
+% managing documents with large numbers of acronyms. (You don't *have* to
+% use this package - unless you have a lot of acronyms, you may feel that
+% such package management of them is bit of an overkill.)
+% Do note that the acronym environment (which lists acronyms) will have a
+% problem when used under IEEEtran.cls because acronym.sty relies on the
+% description list environment - which IEEEtran.cls has customized for
+% producing IEEE style lists. A workaround is to declared the longest
+% label width via the IEEEtran.cls \IEEEiedlistdecl global control:
+%
+% \renewcommand{\IEEEiedlistdecl}{\IEEEsetlabelwidth{SONET}}
+% \begin{acronym}
+%
+% \end{acronym}
+% \renewcommand{\IEEEiedlistdecl}{\relax}% remember to reset \IEEEiedlistdecl
+%
+% instead of using the acronym environment's optional argument.
+% The latest version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/acronym/
+
+
+%\usepackage{algorithmic}
+% algorithmic.sty was written by Peter Williams and Rogerio Brito.
+% This package provides an algorithmic environment fo describing algorithms.
+% You can use the algorithmic environment in-text or within a figure
+% environment to provide for a floating algorithm. Do NOT use the algorithm
+% floating environment provided by algorithm.sty (by the same authors) or
+% algorithm2e.sty (by Christophe Fiorio) as IEEE does not use dedicated
+% algorithm float types and packages that provide these will not provide
+% correct IEEE style captions. The latest version and documentation of
+% algorithmic.sty can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/algorithms/
+% There is also a support site at:
+% http://algorithms.berlios.de/index.html
+% Also of interest may be the (relatively newer and more customizable)
+% algorithmicx.sty package by Szasz Janos:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/algorithmicx/
+
+
+
+
+% *** ALIGNMENT PACKAGES ***
+%
+%\usepackage{array}
+% Frank Mittelbach's and David Carlisle's array.sty patches and improves
+% the standard LaTeX2e array and tabular environments to provide better
+% appearance and additional user controls. As the default LaTeX2e table
+% generation code is lacking to the point of almost being broken with
+% respect to the quality of the end results, all users are strongly
+% advised to use an enhanced (at the very least that provided by array.sty)
+% set of table tools. array.sty is already installed on most systems. The
+% latest version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/required/tools/
+
+
+%\usepackage{mdwmath}
+%\usepackage{mdwtab}
+% Also highly recommended is Mark Wooding's extremely powerful MDW tools,
+% especially mdwmath.sty and mdwtab.sty which are used to format equations
+% and tables, respectively. The MDWtools set is already installed on most
+% LaTeX systems. The lastest version and documentation is available at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/mdwtools/
+
+
+% IEEEtran contains the IEEEeqnarray family of commands that can be used to
+% generate multiline equations as well as matrices, tables, etc., of high
+% quality.
+
+
+%\usepackage{eqparbox}
+% Also of notable interest is Scott Pakin's eqparbox package for creating
+% (automatically sized) equal width boxes - aka "natural width parboxes".
+% Available at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/eqparbox/
+
+
+
+
+% *** SUBFIGURE PACKAGES ***
+%\ifCLASSOPTIONcompsoc
+%  \usepackage[caption=false,font=footnotesize,labelfont=sf,textfont=sf]{subfig}
+%\else
+%  \usepackage[caption=false,font=footnotesize]{subfig}
+%\fi
+% subfig.sty, written by Steven Douglas Cochran, is the modern replacement
+% for subfigure.sty, the latter of which is no longer maintained and is
+% incompatible with some LaTeX packages including fixltx2e. However,
+% subfig.sty requires and automatically loads Axel Sommerfeldt's caption.sty
+% which will override IEEEtran.cls' handling of captions and this will result
+% in non-IEEE style figure/table captions. To prevent this problem, be sure
+% and invoke subfig.sty's "caption=false" package option (available since
+% subfig.sty version 1.3, 2005/06/28) as this is will preserve IEEEtran.cls
+% handling of captions.
+% Note that the Computer Society format requires a sans serif font rather
+% than the serif font used in traditional IEEE formatting and thus the need
+% to invoke different subfig.sty package options depending on whether
+% compsoc mode has been enabled.
+%
+% The latest version and documentation of subfig.sty can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/subfig/
+
+
+
+
+% *** FLOAT PACKAGES ***
+%
+%\usepackage{fixltx2e}
+% fixltx2e, the successor to the earlier fix2col.sty, was written by
+% Frank Mittelbach and David Carlisle. This package corrects a few problems
+% in the LaTeX2e kernel, the most notable of which is that in current
+% LaTeX2e releases, the ordering of single and double column floats is not
+% guaranteed to be preserved. Thus, an unpatched LaTeX2e can allow a
+% single column figure to be placed prior to an earlier double column
+% figure. The latest version and documentation can be found at:
+% http://www.ctan.org/tex-archive/macros/latex/base/
+
+
+%\usepackage{stfloats}
+% stfloats.sty was written by Sigitas Tolusis. This package gives LaTeX2e
+% the ability to do double column floats at the bottom of the page as well
+% as the top. (e.g., "\begin{figure*}[!b]" is not normally possible in
+% LaTeX2e). It also provides a command:
+%\fnbelowfloat
+% to enable the placement of footnotes below bottom floats (the standard
+% LaTeX2e kernel puts them above bottom floats). This is an invasive package
+% which rewrites many portions of the LaTeX2e float routines. It may not work
+% with other packages that modify the LaTeX2e float routines. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/sttools/
+% Do not use the stfloats baselinefloat ability as IEEE does not allow
+% \baselineskip to stretch. Authors submitting work to the IEEE should note
+% that IEEE rarely uses double column equations and that authors should try
+% to avoid such use. Do not be tempted to use the cuted.sty or midfloat.sty
+% packages (also by Sigitas Tolusis) as IEEE does not format its papers in
+% such ways.
+% Do not attempt to use stfloats with fixltx2e as they are incompatible.
+% Instead, use Morten Hogholm'a dblfloatfix which combines the features
+% of both fixltx2e and stfloats:
+%
+% \usepackage{dblfloatfix}
+% The latest version can be found at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/dblfloatfix/
+
+
+%\ifCLASSOPTIONcaptionsoff
+%  \usepackage[nomarkers]{endfloat}
+% \let\MYoriglatexcaption\caption
+% \renewcommand{\caption}[2][\relax]{\MYoriglatexcaption[#2]{#2}}
+%\fi
+% endfloat.sty was written by James Darrell McCauley, Jeff Goldberg and 
+% Axel Sommerfeldt. This package may be useful when used in conjunction with 
+% IEEEtran.cls'  captionsoff option. Some IEEE journals/societies require that
+% submissions have lists of figures/tables at the end of the paper and that
+% figures/tables without any captions are placed on a page by themselves at
+% the end of the document. If needed, the draftcls IEEEtran class option or
+% \CLASSINPUTbaselinestretch interface can be used to increase the line
+% spacing as well. Be sure and use the nomarkers option of endfloat to
+% prevent endfloat from "marking" where the figures would have been placed
+% in the text. The two hack lines of code above are a slight modification of
+% that suggested by in the endfloat docs (section 8.4.1) to ensure that
+% the full captions always appear in the list of figures/tables - even if
+% the user used the short optional argument of \caption[]{}.
+% IEEE papers do not typically make use of \caption[]'s optional argument,
+% so this should not be an issue. A similar trick can be used to disable
+% captions of packages such as subfig.sty that lack options to turn off
+% the subcaptions:
+% For subfig.sty:
+% \let\MYorigsubfloat\subfloat
+% \renewcommand{\subfloat}[2][\relax]{\MYorigsubfloat[]{#2}}
+% However, the above trick will not work if both optional arguments of
+% the \subfloat command are used. Furthermore, there needs to be a
+% description of each subfigure *somewhere* and endfloat does not add
+% subfigure captions to its list of figures. Thus, the best approach is to
+% avoid the use of subfigure captions (many IEEE journals avoid them anyway)
+% and instead reference/explain all the subfigures within the main caption.
+% The latest version of endfloat.sty and its documentation can obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/endfloat/
+%
+% The IEEEtran \ifCLASSOPTIONcaptionsoff conditional can also be used
+% later in the document, say, to conditionally put the References on a 
+% page by themselves.
+
+
+
+
+
+% *** PDF, URL AND HYPERLINK PACKAGES ***
+%
+%\usepackage{url}
+% url.sty was written by Donald Arseneau. It provides better support for
+% handling and breaking URLs. url.sty is already installed on most LaTeX
+% systems. The latest version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/url/
+% Basically, \url{my_url_here}.
+
+
+% NOTE: PDF thumbnail features are not required in IEEE papers
+%       and their use requires extra complexity and work.
+%\ifCLASSINFOpdf
+%  \usepackage[pdftex]{thumbpdf}
+%\else
+%  \usepackage[dvips]{thumbpdf}
+%\fi
+% thumbpdf.sty and its companion Perl utility were written by Heiko Oberdiek.
+% It allows the user a way to produce PDF documents that contain fancy
+% thumbnail images of each of the pages (which tools like acrobat reader can
+% utilize). This is possible even when using dvi->ps->pdf workflow if the
+% correct thumbpdf driver options are used. thumbpdf.sty incorporates the
+% file containing the PDF thumbnail information (filename.tpm is used with
+% dvips, filename.tpt is used with pdftex, where filename is the base name of
+% your tex document) into the final ps or pdf output document. An external
+% utility, the thumbpdf *Perl script* is needed to make these .tpm or .tpt
+% thumbnail files from a .ps or .pdf version of the document (which obviously
+% does not yet contain pdf thumbnails). Thus, one does a:
+% 
+% thumbpdf filename.pdf 
+%
+% to make a filename.tpt, and:
+%
+% thumbpdf --mode dvips filename.ps
+%
+% to make a filename.tpm which will then be loaded into the document by
+% thumbpdf.sty the NEXT time the document is compiled (by pdflatex or
+% latex->dvips->ps2pdf). Users must be careful to regenerate the .tpt and/or
+% .tpm files if the main document changes and then to recompile the
+% document to incorporate the revised thumbnails to ensure that thumbnails
+% match the actual pages. It is easy to forget to do this!
+% 
+% Unix systems come with a Perl interpreter. However, MS Windows users
+% will usually have to install a Perl interpreter so that the thumbpdf
+% script can be run. The Ghostscript PS/PDF interpreter is also required.
+% See the thumbpdf docs for details. The latest version and documentation
+% can be obtained at.
+% http://www.ctan.org/tex-archive/support/thumbpdf/
+
+
+% NOTE: PDF hyperlink and bookmark features are not required in IEEE
+%       papers and their use requires extra complexity and work.
+% *** IF USING HYPERREF BE SURE AND CHANGE THE EXAMPLE PDF ***
+% *** TITLE/SUBJECT/AUTHOR/KEYWORDS INFO BELOW!!           ***
+\newcommand\MYhyperrefoptions{bookmarks=true,bookmarksnumbered=true,
+pdfpagemode={UseOutlines},plainpages=false,pdfpagelabels=true,
+colorlinks=true,linkcolor={black},citecolor={black},urlcolor={black},
+pdftitle={A Scale-first approach for Web API development},
+pdfsubject={Typesetting},%<!CHANGE!
+pdfauthor={Carlos Martin Flores G},
+pdfkeywords={Computer Society, IEEEtran, journal, LaTeX, paper,
+             template}}%<^!CHANGE!
+%\ifCLASSINFOpdf
+\usepackage[\MYhyperrefoptions,pdftex]{hyperref}
+%\else
+%\usepackage[\MYhyperrefoptions,breaklinks=true,dvips]{hyperref}
+%\usepackage{breakurl}
+%\fi
+% One significant drawback of using hyperref under DVI output is that the
+% LaTeX compiler cannot break URLs across lines or pages as can be done
+% under pdfLaTeX's PDF output via the hyperref pdftex driver. This is
+% probably the single most important capability distinction between the
+% DVI and PDF output. Perhaps surprisingly, all the other PDF features
+% (PDF bookmarks, thumbnails, etc.) can be preserved in
+% .tex->.dvi->.ps->.pdf workflow if the respective packages/scripts are
+% loaded/invoked with the correct driver options (dvips, etc.). 
+% As most IEEE papers use URLs sparingly (mainly in the references), this
+% may not be as big an issue as with other publications.
+%
+% That said, Vilar Camara Neto created his breakurl.sty package which
+% permits hyperref to easily break URLs even in dvi mode.
+% Note that breakurl, unlike most other packages, must be loaded
+% AFTER hyperref. The latest version of breakurl and its documentation can
+% be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/breakurl/
+% breakurl.sty is not for use under pdflatex pdf mode.
+%
+% The advanced features offer by hyperref.sty are not required for IEEE
+% submission, so users should weigh these features against the added
+% complexity of use.
+% The package options above demonstrate how to enable PDF bookmarks
+% (a type of table of contents viewable in Acrobat Reader) as well as
+% PDF document information (title, subject, author and keywords) that is
+% viewable in Acrobat reader's Document_Properties menu. PDF document
+% information is also used extensively to automate the cataloging of PDF
+% documents. The above set of options ensures that hyperlinks will not be
+% colored in the text and thus will not be visible in the printed page,
+% but will be active on "mouse over". USING COLORS OR OTHER HIGHLIGHTING
+% OF HYPERLINKS CAN RESULT IN DOCUMENT REJECTION BY THE IEEE, especially if
+% these appear on the "printed" page. IF IN DOUBT, ASK THE RELEVANT
+% SUBMISSION EDITOR. You may need to add the option hypertexnames=false if
+% you used duplicate equation numbers, etc., but this should not be needed
+% in normal IEEE work.
+% The latest version of hyperref and its documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/hyperref/
+
+
+
+
+
+% *** Do not adjust lengths that control margins, column widths, etc. ***
+% *** Do not use packages that alter fonts (such as pslatex).         ***
+% There should be no need to do such things with IEEEtran.cls V1.6 and later.
+% (Unless specifically asked to do so by the journal or conference you plan
+% to submit to, of course. )
+
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{wrapfig}
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage{framed}
+\usepackage{hyperref}
+\usepackage{longtable, multirow, booktabs}
+\graphicspath{ {images/} }
+\usepackage[spanish]{babel}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+\urlstyle{same}
+
+\begin{document}
+%
+% paper title
+% Titles are generally capitalized except for words such as a, an, and, as,
+% at, but, by, for, in, nor, of, on, or, the, to and up, which are usually
+% not capitalized unless they are the first or last word of the title.
+% Linebreaks \\ can be used within to get better formatting as desired.
+% Do not put math or special symbols in the title.
+\title{Real-Time Scheduling Algorithms and Battery Consumption of Mobile Devices}
+%
+%
+% author names and IEEE memberships
+% note positions of commas and nonbreaking spaces ( ~ ) LaTeX will not break
+% a structure at a ~ so this keeps an author's name from being broken across
+% two lines.
+% use \thanks{} to gain access to the first footnote area
+% a separate \thanks must be used for each paragraph as LaTeX2e's \thanks
+% was not built to handle multiple paragraphs
+%
+%
+%\IEEEcompsocitemizethanks is a special \thanks that produces the bulleted
+% lists the Computer Society journals use for "first footnote" author
+% affiliations. Use \IEEEcompsocthanksitem which works much like \item
+% for each affiliation group. When not in compsoc mode,
+% \IEEEcompsocitemizethanks becomes like \thanks and
+% \IEEEcompsocthanksitem becomes a line break with idention. This
+% facilitates dual compilation, although admittedly the differences in the
+% desired content of \author between the different types of papers makes a
+% one-size-fits-all approach a daunting prospect. For instance, compsoc 
+% journal papers have the author affiliations above the "Manuscript
+% received ..."  text while in non-compsoc journals this is reversed. Sigh.
+
+
+\author{\IEEEauthorblockN{Raquel Elizondo\IEEEauthorrefmark{1}, Martín Flores\IEEEauthorrefmark{1}, Oscar Rodríguez\IEEEauthorrefmark{1} and Nelson Méndez\IEEEauthorrefmark{1}\\}
+\IEEEauthorblockA{School of Computer Science\\
+Instituto Tecnológico de Costa Rica, Cartago, Costa Rica\\}
+\vspace{0.1cm}
+\IEEEauthorrefmark{1}\small{\emph{Email}: \textbf{\{}\texttt{rackelelizondo, mfloresg, oscar.rodar, n.mendezmontero}\textbf{\}}\texttt{@gmail.com}}
+
+\thanks{This document was proposed as part of the \emph{Advanced Topics in Operative Systems} course at Instituto Tecnológico de Costa Rica. First Semester, 2017. Taught by Ph.D Francisco Torres-Rojas \url{http://dl.acm.org/author_page.cfm?id=81100442656}} 
+\thanks{Abstract and References submitted and revised on March 20th, 2017.}
+\thanks{First draft submitted on May 8th, 2017.}
+\thanks{Final version submitted on May 29th, 2017.}
+%\thanks{Abstract and References received March 20, 2017; revised September 17, 2014. 
+%Corresponding author: M. Shell (email: http://www.michaelshell.org/contact.html).}
+}
+
+
+% ======================================================
+
+% \IEEEcompsocitemizethanks{\IEEEcompsocthanksitem M. Shell is with the Department
+% of Electrical and Computer Engineering, Georgia Institute of Technology, Atlanta,
+% GA, 30332.\protect\\
+% note need leading \protect in front of \\ to get a newline within \thanks as
+% \\ is fragile and will error, could use \hfil\break instead.
+%E-mail: see http://www.michaelshell.org/contact.html
+%\IEEEcompsocthanksitem J. Doe and J. Doe are with Anonymous University.}
+%\thanks{Manuscript received April 19, 2005; revised September 17, 2014.}}
+
+% ======================================================
+
+% note the % following the last \IEEEmembership and also \thanks - 
+% these prevent an unwanted space from occurring between the last author name
+% and the end of the author line. i.e., if you had this:
+% 
+% \author{....lastname \thanks{...} \thanks{...} }
+%                     ^------------^------------^----Do not want these spaces!
+%
+% a space would be appended to the last name and could cause every name on that
+% line to be shifted left slightly. This is one of those "LaTeX things". For
+% instance, "\textbf{A} \textbf{B}" will typeset as "A B" not "AB". To get
+% "AB" then you have to do: "\textbf{A}\textbf{B}"
+% \thanks is no different in this regard, so shield the last } of each \thanks
+% that ends a line with a % and do not let a space in before the next \thanks.
+% Spaces after \IEEEmembership other than the last one are OK (and needed) as
+% you are supposed to have spaces between the names. For what it is worth,
+% this is a minor point as most people would not even notice if the said evil
+% space somehow managed to creep in.
+
+
+
+% The paper headers
+\markboth{Advanced Topics in Operative Systems, May~2017}%
+{Shell \MakeLowercase{\textit{et al.}}: Bare Advanced Demo of IEEEtran.cls for Journals}
+
+% The only time the second header will appear is for the odd numbered pages
+% after the title page when using the twoside option.
+% 
+% *** Note that you probably will NOT want to include the author's ***
+% *** name in the headers of peer review papers.                   ***
+% You can use \ifCLASSOPTIONpeerreview for conditional compilation here if
+% you desire.
+
+
+
+% The publisher's ID mark at the bottom of the page is less important with
+% Computer Society journal papers as those publications place the marks
+% outside of the main text columns and, therefore, unlike regular IEEE
+% journals, the available text space is not reduced by their presence.
+% If you want to put a publisher's ID mark on the page you can do it like
+% this:
+%\IEEEpubid{0000--0000/00\$00.00~\copyright~2014 IEEE}
+% or like this to get the Computer Society new two part style.
+%\IEEEpubid{\makebox[\columnwidth]{\hfill 0000--0000/00/\$00.00~\copyright~2014 IEEE}%
+%\hspace{\columnsep}\makebox[\columnwidth]{Published by the IEEE Computer Society\hfill}}
+% Remember, if you use this you must call \IEEEpubidadjcol in the second
+% column for its text to clear the IEEEpubid mark (Computer Society journal
+% papers don't need this extra clearance.)
+
+
+
+% use for special paper notices
+%\IEEEspecialpapernotice{(Invited Paper)}
+
+
+
+% for Computer Society papers, we must declare the abstract and index terms
+% PRIOR to the title within the \IEEEtitleabstractindextext IEEEtran
+% command as these need to go into the title area created by \maketitle.
+% As a general rule, do not put math, special symbols or citations
+% in the abstract or keywords.
+%\IEEEtitleabstractindextext{%
+
+% Note that keywords are not normally used for peerreview papers.
+%\begin{IEEEkeywords}
+%Computer Society, IEEEtran, journal, \LaTeX, paper, template.
+%\end{IEEEkeywords}}
+
+
+% make the title area
+\maketitle
+
+\begin{abstract}
+One of the most increasing areas in application development is real time applications, as time goes by and technology develops more powerful devices the applications are now requested by users as real time applications, extended reality applications, and more complex applications such as online banking and more that requires more complex implementations every time. As much as we as users like these new applications and the new possibilities we have with them, there is always a concern regarding this kind of applications in mobile devices: the energy consumption. For this applications to run and perform as expected, a considerable amount of energy is needed, for these applications the constant communication with peers and/or main services is essential, and for that live interaction the device needs to spend more energy than a plain classic application, specifically for jobs that the processor executes periodically to keep the live interaction as expected. There are some approaches for this problem that involve designs of algorithms for scheduling these kind of jobs with the objective of saving energy, or at least spend it wisely. In this paper we discuss some of the algorithms that have been proposed to mitigate this issue and keep the user experience the best possible by using battery energy in a smart way but still guaranteeing a very good performance of real time applications.
+
+\end{abstract}
+
+\section{Introduction}
+\IEEEPARstart{N}{owadays} real-time applications are taking over mobile devices more than ever and, although this brings a lot of new opportunities, it brings challenges too. There is a plenty of examples of applications that includes collective, social, distributed and even virtual/augmented reality features out there and, it just a matter to take a look to a smartphone of an average user to see several of them in action. But, besides the success behind laptops and cell phones as the mobile devices, currently there are many other hardware architectures which has mobile capabilities as well and, in which the implementation of new and interactive applications have increased in recent years. Weareable technolgy and ARM architectures are good examples of this.
+
+Thanks to hardware advances, both companies and users are pushing to provide and experience better applications on mobile devices but this still has big impact in its performance, particularly in battery conpsumption. Research groups have focused on optimizing the hardware of mobile devices, as well as their middleware increasing both the devices' uptime and the user satisfaction but the greater demand in performance for both mobile device hardware and its applications conflicts with the desire for longer battery life. 
+
+Users are craving for longer battery life, some even claim that the next big thing in technology ought be better batteries\cite{moren}. Taking as example mobile applications, a study conducted by \cite{wilke-et-al} analyzed 9 millions user comments and 27,000 mobile applications under the Google Play store and demostrated that users of mobile applications are interested in enery-efficient applications and energy-inefficient applications lead to frustrated users to negative feedback and lower application ratings. Some other relevants results of the study revealed that: more than 18\% of the analyzed applications have user feedback comprising comments on energy consumption problems, energy-efficiency issues negatively influence the grades users give for mobile apps in market places and that free apps do not have more energy consumption problems than payed apps. 
+
+The energy use of a typical laptop computer, smartphone and a tablet is dominated by the backlight and display, disks and CPU. They use a number of techniques to reduce the energy consumed by the disk and display, primarily by turning them off after a period of no use. Power consumed by the CPU is becoming more significant because of the type of the applications they run now: data-intensive, multimedia, games and collaborative applications that need to be in a constant sync with networks, sensors, and other devices. Dynamic voltage scaling (DVS) is a common mechanism to save CPU energy. It exploits an important characteristic or CMOS\footnote{CMOS: Complementary metal–oxide–semiconductor}-based processors: the maximun frequency scales almost linearly to the voltage, and the energy consumed per cycle is proportional to the square of the voltage. A lower frequency hence enables a lower voltage and yields a quadratic energy reduction\cite{chandrakasan}. The major goal of DVS is to reduce energy by as much as possible without degrading appplication performance. The efectiveness of DVS techniques is, therefore, dependent on the ability to predict application CPU demands -- overestimating them can waste CPU and energy resources, while understimating them can degrade aplication performance\cite{yuan-nahrstedt}.
+
+A real-time operating system has a well-specified maximum time for each action that it performs to support applications with precise timing needs. Systems that can guarantee these maximum times are called hard real-time systems. Those that meet these times most of the time are called soft real-time systems. Deploying an airbag in response to a sensor being actuated is a case where you would want a hard real-time system. On-line transaction systems, airline reservation systems and decoding video frames are examples of where a soft real-time system can be used.
+
+In this paper, we introduce a set or real-time scheduling algorithms for hard real-time systems have been proposed to improve energy-saving for mobile devices. The rest of the paper is organized as follows. The paper begins pointing the differences between hard real-time and soft real-time systems in Section \ref{sec:hardrt-vs-softrt}. Then, we provide an introduction to real-time task scheduling algorithms in Section \ref{sec:rt-algs}. We focus our attention in \emph{earliest deadline first} and \emph{rate monotonic} algorithms because they have been proven to be the most popular algorithms for hard real-time systems\cite{w-s-liu}. In Section \ref{sec:dvs-algs} the basics of DVS algorithms are presented. Section \ref{sec:rt-algs} presents several variations of hard real-time and DVS algorithms that have been proposed that helps to improve battery performace. Results on Section \ref{sec:results} measure how these algorithms behave under certain conditions. The paper is concluded in Section \ref{sec:conclusion}.  
+
+\section{Hard Real-Time versus Soft Real-Time Systems} \label{sec:hardrt-vs-softrt}
+The following are the major differences between hard and soft real-time systems according to \cite{juvva}. 
+\paragraph{Response time requirements} on hard real-time systems are in the order of milliseconds or less and can result in a catastrophe if not met. In contrast, the response time requirements of soft real-time systems are higher and not very strict. 
+
+\paragraph{Peak-load performance} in a hard real-time system, must be predictable and should not violate the predefined deadlines. In a soft real-time system, a degraded operation in a rarely occurring peak load can be tolerated. 
+
+\paragraph{Safety} a hard real-time system must remain synchronous with the state of the environment in all cases. On the other hand soft real-time systems will slow down their response time if the load is very high. Hard real-time systems are often safety critical. 
+
+\paragraph{Size of data files} hard real-time systems have small data files and real-time databases. Temporal accuracy is often the concern here. Soft real-time systems for example, on-line reservation systems have larger databases and require long-term integrity of real-time systems. If an error occurs in a soft real-time system, the computation is rolled back to a previously established checkpoint to initiate a recovery action. In hard real-time systems, roll-back/recovery is of limited use.
+ 
+
+\section{Real-Time Task Scheduling Algorithms} \label{sec:rt-algs}
+Several schemes of classification of real-time task scheduling algorithms exist. A scheme in \cite{mall} classifies the real-time task scheduling algorithms based on how the scheduling points (the points on time line at which the scheduler makes decisions regarding which task is to be run next) are defined. According to this classification scheme, the three main types of schedulers are: clock-driven, event-driven, and hybrid. The clock-driven schedulers are those in which the scheduling points are determined by the interrupts received from a clock. In the event-driven ones, the scheduling points are defined by certain events which precludes clock interrupts. The hybrid ones use both clock interrupts as well as event occurrences to define their scheduling points.
+
+
+Important examples of event-driven schedulers are Earliest Deadline First (EDF) and Rate Monotonic analysis (RM). Event-driven schedulers are more sophisticated and usually more proficient and flexible than clock-driven schedulers. These are more proficient because they can feasibly schedule some task sets which clock-driven schedulers can not. These are more flexible because they can feasibly schedule sporadic and aperiodic tasks in addition to periodic tasks, whereas clock-driven schedulers can satisfactorily handle only periodic tasks\cite{mall}. Event-driven scheduling of real-time tasks was a subject of intense research during early 1970s, leading to the publication of a large number of research results, of which the following two popular algorithms are the essence of all EDF and RM\cite{w-s-liu}.
+
+\subsection{Earliest Dealine First (EDF)}
+Every process tells the operating system scheduler its absolute time deadline. The scheduling algorithm simply allows the process that is in the greatest danger of missing its deadline to run first. Generally, this means that one process will run to completion if it has an earlier deadline than another. The only time a process would be preempted would be when a new process with an even shorter deadline becomes ready to run. To determine whether all the scheduled processes are capable of having their deadlines met, the following condition must hold:
+
+$$\sum_{i = 1}^{n} \frac{C_i}{P_i} \leq 1$$
+
+This simply tells us sum of all the percentages of CPU time used per process has to be less than or equal to 100\%. 
+
+\subsection{Rate Monotonic (RM)}
+ Rate monotonic analysis is a technique for assigning static priorities to periodic processes. As such, it is not a scheduler but a mechanism for governing the behavior of a preemptive priority scheduler. A conventional priority scheduler is used with this system, where the highest priority ready process will always get scheduled, preempting any lower priority processes.
+
+A scheduler that is aware of rate monotonic scheduling would be provided with process timing parameters (period of execution) when the process is created and compute a suitable priority for the process. Most schedulers that support priority scheduling (e.g., Windows, Linux, Solaris, FreeBSD, NetBSD) do not perform rate monotonic analysis but only allow fixed priorities, so it is up to the user to assign proper priority levels for all real-time processes on the system. To do this properly, the user must be aware of all the real-time processes that will be running at any given time and each process' frequency of execution ($1/T$, where $T$ is the period). To determine whether all scheduled processes can have their real-time demands met, the system has to also know each process' compute needs per period (C) and check that the following condition holds: 
+
+$$\sum_{i = 1}^{n} \frac{C_i}{P_i} < \ln 2$$
+
+To assign a rate monotonic priority, one simply uses the frequency information for each process. If a process is an aperiodic process, the worst-case (fastest) frequency should be used. The highest frequency (smallest period) process gets the highest priority and successively lower frequency processes get lower priorities.
+
+Scheduling is performed by a simple priority scheduler. At each quantum, the highest priority ready process gets to run. Processes at the same priority level run round-robin.
+
+\section{DVS Algorithms} \label{sec:dvs-algs}
+There are two kinds of voltage scheduling approaches for hard real-time systems depdending on the voltage scaling granularity: intra-task DVS and inter-task DVS. The intra-task DVS algorithms adjust the voltage within an individual task boundary, while the inter-task DVS algorithms determine the voltage on a task-by-task basis at each scheduling point. The main difference between them is whether the slack times are used for the current task or for the tasks that follow. Inter-task DVS algorithms distribute the slack times from the current task for the following tasks, while intra-task DVS algorithms use the slack times from the current task for the current task itself.
+
+\subsection{Intra-task DVS algorithms} 
+In  scheduling hard real-time tasks, in order to guarantee the timing constraint of each task,  the execution times of tasks are usually assumed to be the worst case execution times (WCETs).  However, since a task has many possible execution paths, there are large execution time variations among them. So, when the execution path taken at run time is not the worst case execution path (WCEP), the task may complete its execution before its WCET, resulting in a slack time. In that case, intra-task DVS exploits such slack times and adjusts the processor speed. Intra-task DVS algorithms can be classified into two types depending on how to estimate slack times and how to adjust speeds.
+
+\subsubsection{Path-based method} the voltage and clock speed are determined based on a predicted reference execution path, such as WCEP. For example, when the actual execution deviates from the predicted reference execution path, the clock speed is adjusted.  If the new path takes significantly longer to complete its execution than the reference path, the clock speed is raised to meet the deadline constraint. On the other hand, if the new path can finish its execution earlier than the reference path, the clock speed is lowered to reduce the energy consumption. Program locations for possible speed scaling are identified using static program analysis\cite{shin-kim-lee} or execution time profiling\cite{lee-sakurai}.
+
+
+\subsubsection{Stochastic method}
+based on the idea that it is better to start the execution at a low speed and accelerate the execution later when needed than to start with a high speed and reduce the speed later when slack time is found. By starting at a low speed, if the task finishes earlier than its WCET, it does not need to execute at a high speed. Theoretically, if the probability density function of execution times of a task is known \emph{a priori}, the optimal speed schedule can be computed \cite{gruian}.  Under the stochastic method, the clock speed is raised at specific time instances, regardless of the execution paths taken. The stochastic intra-task DVS may not utilize all the potential slack times.
+
+\subsection{Inter-task DVS algorithms}
+Inter-task DVS algorithms exploit the ``run-calculate-assign-run'' strategy to determine the supply voltage, which can be summarized as follows: (1) run a current task, (2) when the task is completed, calculate the maximum allowable execution time for the next task, (3) assign the supply voltage for the next task, and (4) run the next task.  Most inter-task DVS algorithms differ during step (2) in computing the maximum allowed time for the next task $\tau$ which is the sum of WCET of $\tau$ and the slack time available for $\tau$.
+
+A generic inter-task DVS algorithm consists of two parts: slack estimation and slack distribution.  The goal of the slack estimation part is to identify as much slack times as possible while the goal of the slack distribution part is to distribute the resulting slack times so that the resulting speed schedule is as uniform as possible. Slack times generally come from two sources; \emph{static slack times} are the extra times available for the next task that can be identified statically, while {dynamic slack times} are caused from run-time variations of the task executions.
+
+\subsubsection{Slack estimation methods}
+\emph{Static slack estimation Maximum constant speed:} One of the most commonly used static slack estimation methods is to compute the maximum constant speed, which is defined as the lowest possible clock speed that guarantees the feasible schedule of a task set \cite{shin}.  For example, in EDF scheduling, if the worst case  processor utilization (WCPU) $U$ of a given task set is lower than 1.0 under the maximum speed $f_{max}$, the task set can be scheduled with a new maximum speed $f'_{max} = U \cdot f_{max}$. Although more complicated, the maximum constant speed can be statically calculated as well for RM scheduling \cite{shin, gruian}.
+
+
+\paragraph{Dynamic slack estimation}
+Three  widely-used  techniques  of  estimating  dynamic slack times are briefly described below. 
+
+\emph{Stretching to NTA:} even though a given task set  is scheduled with the maximum constant speed, since the actual execution times of tasks are usually much less than their WCETs, the tasks usually have dynamic slack times.  One simple method to estimate the dynamic slack time is to use the  arrival  time  of  the  next  task \cite{shin}. (The  arrival  time of the next task is denoted by NTA.) Assume that the current task $\tau$ is scheduled at time $t$. If NTA of $\tau$ is later than $(t + \textnormal{WCET}(\tau))$, task $\tau$ can be executed at a lower speed so that its execution completes exactly at the NTA. 
+
+
+\emph{Priority-based slack stealing}: this method exploits the basic  properties of  priority-driven scheduling such as  RM and EDF. The basic idea is that when a higher-priority task completes its execution earlier than its WCET, the following lower-priority tasks  can use the  slack time from the completed higher-priority task.  It is also possible for a higher-priority task to utilize the slack times from completed lower-priority tasks.  However, the latter type of slack stealing is computationally expensive to implement precisely.  Therefore, the existing algorithms are based on heuristics \cite{aydin, kim}.
+
+\emph{Utilization updating:} the actual processor utilization during run time is usually lower than the worst case processor utilization. The utilization updating technique estimates the required processor performance at the current scheduling point by recalculating the expected worst case processor utilization using the actual execution times of completed task instances \cite{pillai}.   When the processor utilization is updated, the clock speed can be adjusted accordingly. The main merit of this method is its simple implementation, since only the processor utilization of completed task instances have to be updated at each scheduling point.
+
+\paragraph{Slack distribution methods} In distributing slack times, most inter-task DVS algorithms have adopted a greedy approach, where all the slack times are given to the next activated task. This  approach is not an optimal solution, but the greedy approach is widely used because of its simplicity.
+
+
+\section{Representative Algorithms} \label{hard-rt-algs}
+Many DVS algorithms have been proposed or developed, especially for hard real-time systems. Since lowering the supply voltage also decreases the maximum achievable clock speed, various DVS algorithms for hard real-time systems have the goal of reducing supply voltage dynamically to the lowest possible level while satisfying the tasks' timing constraints\cite{kim-2}. The following is a representative list of DVS algorithms that have been proposed for addressing energy efficiency on mobile devices: two of which are based on the RM scheduling policy, while the other algorithms are based on the EDF scheduling policy, the two most widely used real-time system models\cite{w-s-liu}. Two algorithms were selected for intra-task DVS, one from path-based intra-task DVS algorithms, and the other from stochastic methods.
+
+\begin{itemize}
+
+    \item \texttt{lppsEDF} and \texttt{lppsRM} which were proposed in \cite{shin}, slack time of a task is estimated using the maximum constant speed and Stretching-to-NTA methods.
+    
+    \item \texttt{ccRM} algorithm proposed \cite{pillai} is similar to \texttt{lppsRM} in the sense that it uses both the maximum constant speed and the Stretching-to-NTA methods. However, while \texttt{lppsRM} can adjust the voltage and clock speed only when a single task is active, \texttt{ccRM} extends the stretching to NTA method to the case where multiple tasks are active.
+
+    
+    \item In \cite{pillai}, two other DVS algorithms are proposed, \texttt{ccEDF} and \texttt{laEDF}, for EDF scheduling policy. These algorithms estimate slack time of a task using the utilization updating method. While \texttt{ccEDF} adjusts the voltage and clock speed based on run-time variation in processor utilization alone, \texttt{laEDF} takes a more aggressive approach by estimating the amount of work required to be completed before NTA. 
+    
+    \item \texttt{DRA} proposed in \cite{aydin}, is a representative DVS algorithm that are based on the priority-based slack stealing method. The algorithm estimates the slack time of a task using the priority-based slack stealing method along with the maximum constant speed and the Stretching-to-NTA methods.
+    
+    \item \texttt{AGR}, an extension of \texttt{DRA} proposed in \cite{aydin} is intended for more aggressive slack estimation and voltage/clock scaling. In \texttt{AGR}, in addition to the priority-based slack stealing, more slack times are identified by computing the amount of work required to be completed before NTA.
+    
+    \item \texttt{lpSEH} in \cite{kim} is based on the priority-based slack stealing method. It extends the priority-based slack stealing method by adding a procedure that estimates the slack time from lower-priority tasks that were completed earlier than expected. \texttt{DRA}, \texttt{AGR}, and \texttt{lpSEH} algorithms are somewhat similar to one another in the sense that all of them use the maximum constant speed in the off-line phase and the Stretching-to-NTA method in the on-line phase in addition to the priority-based slack stealing method.
+    
+    \item \texttt{darEDF} in \cite{zhuo-chakrabarti} is based on an efficient slack task scheduling scheme that employs dynamic speed setting slack in run queue. The algorithm uses a dynamic version of the average rate heuristic first and delays slack absorption, resulting in better battery performance.    
+
+\end{itemize}
+
+Shin's intra-task DVS algorithm \cite{shin-kim-lee} and Gruian's algorithm \cite{gruian} are used as representative intra-task DVS algorithms which use path-based method and the stochastic method, respectively.
+
+\section{Results} \label{sec:results}
+In \cite{kim-2} a performance comparison of most of the algorithms presented in section \ref{hard-rt-algs} was made using a simulation environment named SimDVS. This work is relevant because it is argued that although each DVS algorithm is shown to be quite effective in reducing the energy/power consumption of a target system under its own experimental scenarios, these DVS algorithms have not been quantitatively evaluated under a unified framework, making it a difficult task for low-power embedded system developers to select an appropriate DVS algorithm for a given application/system.
+
+\paragraph{Impact of the number of task on the energy consumption} as the number of tasks increases,  the  energy  efficiency  of \texttt{lppsEDF}, \texttt{lppsRM}, and \texttt{ccRM} that only use the Stretching-to-NTA technique do not significantly improve, while that of the other more aggressive inter-task DVS algorithms improves significantly when compared with the energy consumption of an applicacion running on a DVS-unaware system with a power-down mode only. In the Stretching-to-NTA method, the slack time that can be exploited is limited to the time between the completion of a task instance and the arrival time of the next task instance, which is largely independent of the number of tasks in the system. For the other inter-task DVS algorithms, since the slack times can be taken from any completed task instance, as the number of task increases, each task has more slack sources and can be scheduled with a lowered clock speed.
+
+\paragraph{Worst case processor utilization of task set} except for \texttt{lppsEDF}, the energy consumption of inter-task DVS algorithms increases as a linear function of WCPU of a task  set. For \texttt{lppsEDF}, the energy consumption increases faster than a linear function of WCPU of a task set. This indirectly indicates that the dynamic slack estimation method of \texttt{lppsEDF} is not very effective. 
+\texttt{lppsEDF} shows better energy efficiency than \texttt{ccEDF} when WCPU is less than 0.7. In \texttt{ccEDF}, the clock speed is determined using the actual processor utilization at the scheduling point.  Since the actual processor utilization increases when a low-speed task instance completes its execution, the next task instance needs to be executed in a higher speed. Such  voltage fluctuation occurs more often as the WCPU decreases. Thus, as the WCPU decreases, the energy efficiency of ccEDF becomes worse than that of \texttt{lppsEDF}. The results for \texttt{lppsRM} and \texttt{ccRM} are very similar to that of \texttt{lppsEDF}. 
+
+\paragraph{Speed bound} the energy efficiency of \texttt{AGR} and \texttt{lpSEH} is very close to the theoretical lower bound\footnote{Determined by the Yao's algorithm in \cite{yao}} when the speed bound factor is near 0.5. For the aggressive inter-task DVS algorithms, the energy efficiency is highest when the speed bound factor was set to average case processor utilization (ACPU). When the selected speed bound factor is close to ACPU $(= 0,55 \times \textnormal{WCPU})$, the best energy effciency is achieved for \texttt{laEDF}. For \texttt{ccEDF} this trend does not hold. For RM inter-task DVS algorithms, the performance gap between the energy efficiency and that of the theoretical lower bound was roughly 35$\sim$40\%.
+
+Regarding the results of \texttt{darEDF} discussed in \cite{zhuo-chakrabarti}, the comparison with competing algorithms such as \texttt{lppsEDF} and \texttt{lpSEH} revelead that \texttt{darEDF} has the best performance both with respect to charge consumption and energy consumption, besides a lower runtime complexity than \texttt{lpSEH} wich has been proven to have close optimal energy saving according to \cite{kim-2}.
+
+\subsection{Performance evaluation of Intra-Task DVS algorithms}
+The two representative intra-task DVS algorithms perform quite differently depending on available slack times. When the relative energy consumption ratio of intraGruian over intraShin was measured, if the ratio is larger than 1, intraGruian performs better than intraShin. When  the  slack  ratio  is  less  than  1.2, intraShin outperforms intraGruian because intraShin spends more time in the lower speed region than intraGruian. When the slack ratio is increased, intraGruian spends more time in the lower speed region than intraShin.
+
+
+\section{Related Work} \label{sec:rel-work}
+Although this work is focused in hard real-time scheduling algorithms, CPU scheduling and energy/power efficiency of soft real-time systems and mobile devices has been addressed as well. In \cite{yuan-nahrstedt-1} a framework to integrate DVS into soft real-time scheduling for open mobile systems is presented. Its goal is to achieve energy saving DVS while preserinf resource guarantees of soft real-time scheduling. In \cite{yuan-nahrstedt} an enery efficient soft real-time CPU scheduler intended for mobile multimedia systems named \emph{GRACE-OS} is presented.
+
+In \cite{kim-2} hybrid methods are discussed as well. By using this methods researchers try to answer quest of whether hybrid DVS algorithms will perform better than pure inter-task DVS or pure intra-task DVS. The study indicates that the performance of a HybridDVS algorithm can be better than a pure intra-task DVS algorithm or a pure inter-task DVS algorithm. However, the differences in energy efficiency depend on the characteristics of both the intra-task DVS and the inter-task DVS components used in the HybridDVS algorithm.
+
+Another popular technique to reduce energy consumption of mobile devices is computation offloading in which an application reduce energy consumption by delegating code execution to other devices. Traditionally, computations are offloaded to remote servers. Selection of a proper offloading strategy can reduce power consumption and simultaneously enhance performance for mobile device. Following this technique, in \cite{quian-andresen} a computation offloading system for mobile devices named \emph{Jade} is presented. \emph{Jade} implements a multi-level task scheduling algorithm that enables energy and performance-aware task scheduling. It is built for mobile devices running Android operative system and it minimizes energy consumption of mobile devices through fine-grained computation offloading to the cloud. The algorithm (1) incorporates server status, (2) balances the workload between servers, and (3) offloads tasks to the most appropiate server according to the energy and computing demand of the task.
+
+In \cite{kwon-tilevich} another offloading approach that combines the advantages of particioning mobile applications and in dynamically adaptin mobile execution targets in response to fluctuations in network conditions. The proposed approach is realized as the following two technical solutions: (1) a multitarget offloading program transformation that automatically rewrites a centralized program into a distributed program, whose local/remote distribution is determined dynamically at runtime; (2) a runtime system that determines the required local/remote distribution of the resulting distributed program based on the current execution environment. Combining these two solutions can effectively reduce the amount of energy consumed by mobile applications without having to change their source code by hand, thus optimizing them behind the scenes.
+
+
+\section{Conclusions} \label{sec:conclusion}
+In this paper, real-time scheduling principles and algorithms and their impact on energy/power consumption were discussed. A high level introduction to the most popular hard real-time scheduling algorithms such as EDF and RM are given and later we also introduced variations of these real-time algorithms in the context of Dynamic Voltage Scaling, which allows devices to bring good performace while having improved battery consumption.
+
+According to the results, the efficiency of the algorithms vary depending of the impact of conditions such as number of tasks or worst case processor utilization, but even under those conditions improvements are experienced which maken them suitable for scenarios when energy concerns are required.
+
+% To allow for easy dual compilation without having to reenter the
+% abstract/keywords data, the \IEEEtitleabstractindextext text will
+% not be used in maketitle, but will appear (i.e., to be "transported")
+% here as \IEEEdisplaynontitleabstractindextext when compsoc mode
+% is not selected <OR> if conference mode is selected - because compsoc
+% conference papers position the abstract like regular (non-compsoc)
+% papers do!
+\IEEEdisplaynontitleabstractindextext
+% \IEEEdisplaynontitleabstractindextext has no effect when using
+% compsoc under a non-conference mode.
+
+
+% For peer review papers, you can put extra information on the cover
+% page as needed:
+% \ifCLASSOPTIONpeerreview
+% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
+% \fi
+%
+% For peerreview papers, this IEEEtran command inserts a page break and
+% creates the second title. It will be ignored for other modes.
+\IEEEpeerreviewmaketitle
+
+
+%\ifCLASSOPTIONcompsoc
+%\IEEEraisesectionheading{\section{Introduction}\label{sec:introduction}}
+%\else
+%\section{Introduction}
+%\label{sec:introduction}
+%\fi
+
+% Computer Society journal (but not conference!) papers do something unusual
+% with the very first section heading (almost always called "Introduction").
+% They place it ABOVE the main text! IEEEtran.cls does not automatically do
+% this for you, but you can achieve this effect with the provided
+% \IEEEraisesectionheading{} command. Note the need to keep any \label that
+% is to refer to the section immediately after \section in the above as
+% \IEEEraisesectionheading puts \section within a raised box.
+
+
+
+
+% The very first letter is a 2 line initial drop letter followed
+% by the rest of the first word in caps (small caps for compsoc).
+% 
+% form to use if the first word consists of a single letter:
+% \IEEEPARstart{A}{demo} file is ....
+% 
+% form to use if you need the single drop letter followed by
+% normal text (unknown if ever used by IEEE):
+% \IEEEPARstart{A}{}demo file is ....
+% 
+% Some journals put the first two words in caps:
+% \IEEEPARstart{T}{his demo} file is ....
+% 
+% Here we have the typical use of a "T" for an initial drop letter
+% and "HIS" in caps to complete the first word.
+%\IEEEPARstart{I}{n} 
+
+
+% needed in second column of first page if using \IEEEpubid
+%\IEEEpubidadjcol
+
+%\subsubsection{Subsubsection Heading Here}
+%Subsubsection text here.
+
+
+% An example of a floating figure using the graphicx package.
+% Note that \label must occur AFTER (or within) \caption.
+% For figures, \caption should occur after the \includegraphics.
+% Note that IEEEtran v1.7 and later has special internal code that
+% is designed to preserve the operation of \label within \caption
+% even when the captionsoff option is in effect. However, because
+% of issues like this, it may be the safest practice to put all your
+% \label just after \caption rather than within \caption{}.
+%
+% Reminder: the "draftcls" or "draftclsnofoot", not "draft", class
+% option should be used if it is desired that the figures are to be
+% displayed while in draft mode.
+%
+%\begin{figure}[!t]
+%\centering
+%\includegraphics[width=2.5in]{myfigure}
+% where an .eps filename suffix will be assumed under latex, 
+% and a .pdf suffix will be assumed for pdflatex; or what has been declared
+% via \DeclareGraphicsExtensions.
+%\caption{Simulation results for the network.}
+%\label{fig_sim}
+%\end{figure}
+
+% Note that IEEE typically puts floats only at the top, even when this
+% results in a large percentage of a column being occupied by floats.
+% However, the Computer Society has been known to put floats at the bottom.
+
+
+% An example of a double column floating figure using two subfigures.
+% (The subfig.sty package must be loaded for this to work.)
+% The subfigure \label commands are set within each subfloat command,
+% and the \label for the overall figure must come after \caption.
+% \hfil is used as a separator to get equal spacing.
+% Watch out that the combined width of all the subfigures on a 
+% line do not exceed the text width or a line break will occur.
+%
+%\begin{figure*}[!t]
+%\centering
+%\subfloat[Case I]{\includegraphics[width=2.5in]{box}%
+%\label{fig_first_case}}
+%\hfil
+%\subfloat[Case II]{\includegraphics[width=2.5in]{box}%
+%\label{fig_second_case}}
+%\caption{Simulation results for the network.}
+%\label{fig_sim}
+%\end{figure*}
+%
+% Note that often IEEE papers with subfigures do not employ subfigure
+% captions (using the optional argument to \subfloat[]), but instead will
+% reference/describe all of them (a), (b), etc., within the main caption.
+% Be aware that for subfig.sty to generate the (a), (b), etc., subfigure
+% labels, the optional argument to \subfloat must be present. If a
+% subcaption is not desired, just leave its contents blank,
+% e.g., \subfloat[].
+
+
+% An example of a floating table. Note that, for IEEE style tables, the
+% \caption command should come BEFORE the table and, given that table
+% captions serve much like titles, are usually capitalized except for words
+% such as a, an, and, as, at, but, by, for, in, nor, of, on, or, the, to
+% and up, which are usually not capitalized unless they are the first or
+% last word of the caption. Table text will default to \footnotesize as
+% IEEE normally uses this smaller font for tables.
+% The \label must come after \caption as always.
+%
+%\begin{table}[!t]
+%% increase table row spacing, adjust to taste
+%\renewcommand{\arraystretch}{1.3}
+% if using array.sty, it might be a good idea to tweak the value of
+% \extrarowheight as needed to properly center the text within the cells
+%\caption{An Example of a Table}
+%\label{table_example}
+%\centering
+%% Some packages, such as MDW tools, offer better commands for making tables
+%% than the plain LaTeX2e tabular which is used here.
+%\begin{tabular}{|c||c|}
+%\hline
+%One & Two\\
+%\hline
+%Three & Four\\
+%\hline
+%\end{tabular}
+%\end{table}
+
+
+% Note that the IEEE does not put floats in the very first column
+% - or typically anywhere on the first page for that matter. Also,
+% in-text middle ("here") positioning is typically not used, but it
+% is allowed and encouraged for Computer Society conferences (but
+% not Computer Society journals). Most IEEE journals/conferences use
+% top floats exclusively. 
+% Note that, LaTeX2e, unlike IEEE journals/conferences, places
+% footnotes above bottom floats. This can be corrected via the
+% \fnbelowfloat command of the stfloats package.
+
+
+
+
+%\section{Conclusion}
+
+
+
+
+
+% if have a single appendix:
+%\appendix[Proof of the Zonklar Equations]
+% or
+%\appendix  % for no appendix heading
+% do not use \section anymore after \appendix, only \section*
+% is possibly needed
+
+% use appendices with more than one appendix
+% then use \section to start each appendix
+% you must declare a \section before using any
+% \subsection or using \label (\appendices by itself
+% starts a section numbered zero.)
+%
+
+
+%\appendices
+%\section{A basic deployment pipeline}
+%\label{sec:deployment-pipeline}
+%
+%\begin{figure*}[h]
+%    \centering
+%    \includegraphics[width=12cm]{deployment-pipeline}
+%    \caption{A basic deployment pipeline}
+%    \label{fig:deployment-pipeline}
+%\end{figure*}
+
+%Appendix one text goes here.
+
+% you can choose not to have a title for an appendix
+% if you want by leaving the argument blank
+%\section{}
+%Appendix two text goes here.
+
+
+% use section* for acknowledgment
+%\ifCLASSOPTIONcompsoc
+  % The Computer Society usually uses the plural form
+%  \section*{Acknowledgments}
+%\else
+  % regular IEEE prefers the singular form
+%  \section*{Acknowledgment}
+%\fi
+
+
+%The authors would like to thank...
+
+
+% Can use something like this to put references on a page
+% by themselves when using endfloat and the captionsoff option.
+\ifCLASSOPTIONcaptionsoff
+  \newpage
+\fi
+
+
+
+% trigger a \newpage just before the given reference
+% number - used to balance the columns on the last page
+% adjust value as needed - may need to be readjusted if
+% the document is modified later
+%\IEEEtriggeratref{8}
+% The "triggered" command can be changed if desired:
+%\IEEEtriggercmd{\enlargethispage{-5in}}
+
+% references section
+
+% can use a bibliography generated by BibTeX as a .bbl file
+% BibTeX documentation can be easily obtained at:
+% http://www.ctan.org/tex-archive/biblio/bibtex/contrib/doc/
+% The IEEEtran BibTeX style support page is at:
+% http://www.michaelshell.org/tex/ieeetran/bibtex/
+%\bibliographystyle{IEEEtran}
+% argument is your BibTeX string definitions and bibliography database(s)
+%\bibliography{IEEEabrv,../bib/paper}
+%
+% <OR> manually copy in the resultant .bbl file
+% set second argument of \begin to the number of references
+% (used to reserve space for the reference number labels box)
+\begin{thebibliography}{1}
+
+\bibitem{audsley-burns-davis-tindell-wellings}N.~Audsley, A.~Burns, R.~Davis, K.~Tindell and A.~Wellings, \emph{Real-time system scheduling}, 1995 Predictably Dependable Computing Systems, Springer Berlin Heidelberg, pp. 41-52.
+
+\bibitem{aydin}H.~Aydin, R.~Melhem, D.~Mosse, and P.M.~Alvarez. \emph{Dynamic  and  Aggressive  Scheduling  Techniques  for  Power-Aware  Real-Time Systems}. In Proceedings  of IEEE Real-Time Systems Symposium, December 2001.
+
+\bibitem{chandrakasan}A.~Chandrakasan, S.~Sheng, and R.W.~Brodesen. \emph{Low-power CMOS digital design}. IEEE Journal of Solid-State Circuits, 27:473-484, April. 1992.
+
+\bibitem{davis-burns}R.~Davis and A.~Burns, \emph{A survey of hard real-time scheduling for multiprocessor systems}, 2011 ACM computing surveys (CSUR), 43(4), 35.
+
+\bibitem{gruian}F.~Gruian. \emph{Hard Real-Time Scheduling Using Stochastic Data and  DVS  Processors}. In Proceedings  of  the  International Symposium on Low Power Electronics and Design , pages 46–51, August 2001.
+
+\bibitem{guan-yi-gu-deng-yu}N.~Guan, W.~Yi, Z.~Gu, Q.~Deng and G.~Yu, \emph{New schedulability test conditions for non-preemptive scheduling on multiprocessor platforms}, 2008 Real-Time Systems Symposium, 2008. pp. 137-146. IEEE.
+
+\bibitem{hung-chen-kuo}C.~Hung, J.~Chen and T.~Kuo, \emph{Energy-Efficient Real-Time Task Scheduling for a DVS System with a Non-DVS Processing Element},  Real-Time Systems Symposium, 27th IEEE International, Rio de Janeiro, Brazil, 2006. doi: 10.1109/RTSS.2006.22
+
+\bibitem{moren}D.Moren. \emph{The next big thing in tech ought to be better batteries}. Macworld. August 19, 2016. Available at \url{http://www.macworld.com/article/3109692/hardware/the-next-big-thing-in-tech-ought-to-be-better-batteries.html}
+
+\bibitem{juvva}K.~Juvva. \emph{Real-Time Systems}. Carnegie Mellon University. 18-849b Dependable Embedded Systems. Spring 1998. Available at \url{https://users.ece.cmu.edu/koopman/des_s99/real_time}
+
+\bibitem{kim}W.~Kim, J.~Kim, and S.L.~Min. \emph{A Dynamic Voltage Scaling  Algorithm  for  Dynamic-Priority  Hard  Real-Time  Systems Using Slack Time Analysis}. In Proceedings of Design, Automation and Test in Europe (DATE'02), pages 788–794, March 2002.
+
+\bibitem{kim-2}W.~Kim, J.~Kim, and S.L.~Min \emph{Performance comparison of dynamic voltage scaling algorithms for hard real-time systems}. proc. RTAS. pp 219-228. 2002.
+
+\bibitem{kwon-tilevich}Y. W.~Kwon and E.~Tilevich, \emph{Reducing the Energy Consumption of Mobile Applications Behind the Scenes}, 2013 IEEE International Conference on Software Maintenance, Eindhoven, 2013, pp. 170-179. doi: 10.1109/ICSM.2013.28
+
+\bibitem{lee-sakurai}S.~Lee and T.~Sakurai. \emph{Run-time Voltage Hopping for Low-power Real-Time Systems}. In Proceedings of the 37th Design Automation Conference, pages 806–809, June 2000
+
+\bibitem{w-s-liu}W.S.~Liu. \emph{Real-Time Systems}. Prentice Hall, Englewood Cliffs, NJ, June 2000.
+
+\bibitem{luo-jha}J.~Luo and N.K.~Jha, \emph{Power-conscious Joint Scheduling of Periodic Task Graphs and Aperiodic Tasks in Distributed Real-time Embedded Systems}, IEEE/ACM International Conference on Computer Aided Design, San Jose, CA, 2000. doi: 10.1109/ICCAD.2000.896498
+
+\bibitem{mall}R.~Mall. \emph{Real-Time Systems: Theory and practice}. Pearson Education India, 2009.
+
+\bibitem{pillai}P.~ Pillai and K.G.~Shin. \emph{Real-Time Dynamic Voltage Scaling
+for Low-Power Embedded Operating Systems}.  In Proceedings of 18th ACM Symposium on Operating Systems Principles (SOSP’01), pages 89–102, October 2001.
+
+\bibitem{quian-andresen}H.~Qian and D.~Andresen, \emph{An energy-saving task scheduler for mobile devices}. 2015 IEEE/ACIS 14th International Conference on Computer and Information Science (ICIS), Las Vegas, NV, 2015, pp. 423-430.
+doi: 10.1109/ICIS.2015.7166631
+
+\bibitem{rao-et-al}V.~Rao, N.~Navet and G.~Singhal, \emph{Battery aware dynamic scheduling for periodic task graphs}. 2006 Proceedings 20th IEEE International Parallel \& Distributed Processing Symposium, Rhodes Island, 2006. doi: 10.1109/IPDPS.2006.1639403  
+
+\bibitem{takada-sakamura}H.~Takada and K.~Sakamura, \emph{Real-time synchronization protocols with abortable critical sections}. 1994 Proceedings of 1st International Workshop on Real-time Computing Systems \& Application, pp. 48-52
+
+\bibitem{tianzhou-jiangwei-lingxiang-xinliang}C.~Tianzhou, H.~Jiangwei, X.~Lingxiang and W.~Xinliang, \emph{Balance the battery life and real-time issues for portable real-time embedded system by applying DVS with battery model}, 34th Annual Conference of IEEE, Florida Hotel \& Conference Center, FL, 2008. doi: 10.1109/IECON.2008.4758018
+
+\bibitem{weiser-et-al}M.~Weiser, B.~Welch, A.~Demers, and S.~Shenker. \emph{Scheduling for reduced CPU energy}. In Proc. of Symposium on Operating Systems Design and Implementation. Nov. 1994.
+    
+\bibitem{wilke-et-al}C.~Wilke, S.~Richly, S.~Götz, C.~Piechnick and U.~Aßmann, \emph{Energy Consumption and Efficiency in Mobile Applications: A User Feedback Study}, 2013 IEEE International Conference on Green Computing and Communications and IEEE Internet of Things and IEEE Cyber, Physical and Social Computing, Beijing, 2013, pp. 134-141.
+doi: 10.1109/GreenCom-iThings-CPSCom.2013.45
+
+\bibitem{rao-vrudhula-daler}R.~Ravishankar, V.~Sarma and R.~Daler N, \emph{Battery modeling for energy aware system design},  Computer, IEEE Xplore Digital Library, Volume 36, Pages 77-87, 2003
+
+\bibitem{shin-kim-lee}D.~Shin, J.~Kim, and S.~Lee.  \emph{Intra-Task Voltage Scheduling for Low-Energy Hard Real-Time Applications}. IEEE Design and Test of Computers, 18(2):20–30, March 2001
+
+\bibitem{shin}Y.~Shin, K.~Choi, and  T.~Sakurai. \emph{Power  Optimization  of Real-Time  Embedded  Systems  on  Variable  Speed  Processors}. In Proceedings of the International Conference on Computer-Aided Design, pages 365–368, November 2000.
+
+\bibitem{yao}F.~Yao, A.~Demers, and A.~Shenker. \emph{A Scheduling Model for Reduced CPU Energy}. In Proceedings of the IEEE Foundations of Computer Science, pages 374–382, October 1995.
+
+\bibitem{yuan-nahrstedt-1}W.~Yuan and K.~Nahrstedt, \emph{Integration of Dynamic Voltage Scaling and Soft Real-Time Scheduling for Open Mobile Systems}, In Proceedings of the 12th international workshop on Network and operating systems support for digital audio and video (NOSSDAV '02). ACM, New York, NY, USA, 105-114. 2002.
+
+\bibitem{yuan-nahrstedt}W.~Yuan and K.~Nahrstedt, \emph{Energy-efficient soft real-time CPU scheduling for mobile multimedia systems},  ACM SIGOPS Operating Systems Review, Volume 37, Pages 149-163, 2003.
+
+\bibitem{zhuo-chakrabarti}J.~Zhuo and C.~Chakrabarti, \emph{An efficient dynamic task scheduling algorithm for battery powered DVS systems}, 2004 IEEE International Symposium on Circuits and Systems, Vancouver, BC, 2004. doi: 10.1109/ISCAS.2004.1329396
+
+\end{thebibliography}
+
+% biography section
+% 
+% If you have an EPS/PDF photo (graphicx package needed) extra braces are
+% needed around the contents of the optional argument to biography to prevent
+% the LaTeX parser from getting confused when it sees the complicated
+% \includegraphics command within an optional argument. (You could create
+% your own custom macro containing the \includegraphics command to make things
+% simpler here.)
+%\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{mshell}}]{Michael Shell}
+% or if you just want to reserve a space for a photo:
+
+%\begin{IEEEbiography}{Michael Shell}
+%Biography text here.
+%\end{IEEEbiography}
+
+
+% You can push biographies down or up by placing
+% a \vfill before or after them. The appropriate
+% use of \vfill depends on what kind of text is
+% on the last page and whether or not the columns
+% are being equalized.
+
+%\vfill
+
+% Can be used to pull up biographies so that the bottom of the last one
+% is flush with the other column.
+%\enlargethispage{-5in}
+
+
+
+% that's all folks
+\end{document}
+
+

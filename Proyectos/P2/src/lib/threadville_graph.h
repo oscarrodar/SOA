@@ -2,20 +2,6 @@
 
 #define TV_GRAPH
 
-/*int graph[V][V] = {
-//                   M1 M3 S1 S2 S3 S4 S5 S6 S7 S8
-                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, //M1
-                    {0, 0, 0, 0, 1, 0, 0, 0, 0, 0}, //M3
-                    {0, 0, 0, 1, 0, 0, 0, 0, 0, 0}, //S1
-                    {0, 0, 0, 0, 1, 0, 0, 0, 0, 0}, //S2
-                    {0, 0, 0, 0, 0, 1, 0, 0, 0, 0}, //S3
-                    {0, 0, 0, 0, 0, 0, 1, 0, 0, 0}, //S4
-                    {0, 0, 0, 0, 0, 0, 0, 1, 0, 0}, //S5
-                    {0, 0, 0, 0, 0, 0, 0, 0, 1, 0}, //S6
-                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, //S7
-                    {1, 0, 1, 0, 0, 0, 0, 0, 0, 0}, //S8
-                  };
-*/
 int graph[V][V];
 
 //Funcion para encontrar el vertice con la distancia minima de un conjunto de vertices un no incluidos en el
@@ -60,9 +46,6 @@ void thePath(int from, int to, int paths[], int result[]){
 
     //Reversa
     result[i] = from;
-    for(; i > 0; i--){
-        printf("%d -> ",  result[i]);
-    }
 
 }
 
@@ -81,18 +64,6 @@ void initResultArray(int result[]){
         result[result_idx] = INT_MAX;
     }
 }
-
-
-void printSolution(int dist[], int paths[], int n){
-//    printf("Distancia desde el nodo origen\n");
-//    int i;
-//    for (i = 0; i < V; i++){
-//        printf("%d \t\t %d\n", i, dist[i]);
-//    }
-//
-//    printPath(paths);
-}
-
 
 void dijkstra(int graph[V][V], int src, int paths[]){
 
@@ -142,11 +113,6 @@ void dijkstra(int graph[V][V], int src, int paths[]){
             }
         }
 	}
-
-	printSolution(dist, paths, V);
 }
-
-
-
 #endif
 

@@ -315,8 +315,7 @@ void fillGraph(THREADVILLE *threadville){
 
 
 void init(){
-    puts("Iniciando Threadville");
-	threadville = createThreadville();
+        threadville = createThreadville();
 	initCustomPathWeights();
 
 	//Array de nodos alcanzables
@@ -756,7 +755,6 @@ void init(){
 	bridgeNodeN1 = createNode(163, "BN1", 3, bridgeNodeN1Relations);
 	Larry = createBridge("Larry", bridgeNodeM2, bridgeNodeG4, bridgeNodeN1, bridgeNodeH5);
 	semaphoresBridgeControlInit(Larry);
-	semaphoresBridgeControlWait(Larry);
 
 	//Curly
 	bridgeNodeH4 = createNode(164, "BH4", 3, bridgeNodeH4Relations);
@@ -765,7 +763,6 @@ void init(){
 	bridgeNodeO1 = createNode(167, "BO1", 3, bridgeNodeO1Relations);
 	Curly = createBridge("Curly", bridgeNodeN2, bridgeNodeH4, bridgeNodeO1, bridgeNodeI5);
 	semaphoresBridgeControlInit(Curly);
-	semaphoresBridgeControlWait(Curly);
 
 	//Moe
 	bridgeNodeI4 = createNode(168, "BI4", 3, bridgeNodeI4Relations);
@@ -774,7 +771,6 @@ void init(){
 	bridgeNodeP1 = createNode(171, "BP1", 3, bridgeNodeP1Relations);
 	Moe = createBridge("Moe", bridgeNodeO2, bridgeNodeI4, bridgeNodeP1, bridgeNodeJ5);
 	semaphoresBridgeControlInit(Moe);
-	semaphoresBridgeControlWait(Moe);
 
 	//Shemp
 	bridgeNodeJ4 = createNode(172, "BJ4", 3, bridgeNodeJ4Relations);
@@ -783,7 +779,6 @@ void init(){
 	bridgeNodeQ1 = createNode(175, "BQ1", 3, bridgeNodeQ1Relations);
 	Shemp = createBridge("Shemp", bridgeNodeP2, bridgeNodeJ4, bridgeNodeQ1, bridgeNodeK5);
 	semaphoresBridgeControlInit(Shemp);
-	semaphoresBridgeControlWait(Shemp);
 
 	//Joe
 	bridgeNodeK4 = createNode(176, "BK4", 3, bridgeNodeK4Relations);
@@ -792,7 +787,6 @@ void init(){
 	bridgeNodeR1 = createNode(179, "BR1", 3, bridgeNodeR1Relations);
 	Joe = createBridge("Joe", bridgeNodeQ2, bridgeNodeK4, bridgeNodeR1, bridgeNodeL5);
 	semaphoresBridgeControlInit(Joe);
-	semaphoresBridgeControlWait(Joe);
 	
 	//DEFINICION DE RELACIONES
 	threadville->nodes = nodeY1;
@@ -1262,8 +1256,6 @@ void asignarNodosALista(){
 } // asignarNodosALista
 
 void cargarCordenadasNodos () {
-    printf("********************** Cargar Nodos *****************************\n");
-
     int x, y, p=0, t=0;
     for(x=0; x<FILAS2;x++){
         for(y=0; y<COLUMNAS2; y++){
@@ -1278,7 +1270,7 @@ void cargarCordenadasNodos () {
                 p++;
                 t++;
             }else if(map2[x][y]==8){
-                listaParadas[p]->x=y*TILESIZE;
+                listaParadas[p]->x=y*TILESIZE+10;
                 listaParadas[p]->y=x*TILESIZE;
                 p++;
                 t++;
@@ -1289,8 +1281,7 @@ void cargarCordenadasNodos () {
                 t++;
             }         
         } // for y
-    } // for x
-    printf("...T: %d\n", t);    
+    } // for x   
 } // cargarNodos
 
 // ************** ruta entre dos nodos ************

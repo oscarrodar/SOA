@@ -20,10 +20,7 @@ typedef struct ROUTE{
 //Estructura de vehiculo, utilizada para crear carros, ambulancias y buses
 typedef struct VEHICULE{
 	char *id;
-	int status; //1 for alive and 0 for dead.
 	int type; //1 carro, 2 para ambulancia, 3 para bus
-	int longCapability;
-	int availableRides;
 	struct ROUTE *route;
 	int delay;
 	struct VEHICULE *next;
@@ -32,6 +29,7 @@ typedef struct VEHICULE{
 	int x, y;
 	int dx, dy;
 	int speed;
+    int color;
 	int width, height;
 	int cantidadParadas;
 	struct NODE **paradas;
@@ -50,12 +48,10 @@ typedef struct NODE {
 	char *name;
 	int id;
 	int capability;
+	bool especial;
 	bool allowTravel;//Indica si se puede pasar por el nodo, se utiliza cuando un nodo esta en reparaciones o es parte de un puente
 	int reacheabledNodes[RN];
 	struct NODE *next;
-	struct VEHICULE *vehicule_1;
-	struct VEHICULE *vehicule_2;
-	struct VEHICULE *vehicule_3;
 	int node_paths[V];
 	struct PATH_RULE pathRules[V];
 	int x, y;
@@ -125,10 +121,7 @@ VEHICULE* createCar(char *id){
 
 	VEHICULE *car = malloc(sizeof(VEHICULE));
 	car->id = strdup(id);
-	car->status = 0;
 	car->type = 1;
-	car->longCapability = 1;
-	//car->availableRides = 2;
 	car->delay = 3;
 	car->next = NULL;
 	car->route = NULL;
@@ -140,43 +133,30 @@ VEHICULE* createCar(char *id){
 	car->run=true;
 	srand(time(NULL));
 	car->speed=rand()%7;
+    car->color = car->speed;
 	car->nextDestiny = "-";
-//	printf("Cs: %d\n", car->speed);
 	return car;
 }
 
-VEHICULE* createAmbulance(char *id){
-	VEHICULE *ambulance = malloc(sizeof(VEHICULE));
-	ambulance->id = strdup(id);
-	ambulance->status = 0;
-	ambulance->type = 2;
-	ambulance->longCapability = 1;
-	//ambulance->availableRides = 2;
-	ambulance->delay = 8;
-	ambulance->next = NULL;
-	ambulance->route = NULL;
-
-	return ambulance;
-}
-
-VEHICULE* createBus(char *id, int speed){
+VEHICULE* createBus(char *id, int speed, int color){
 	VEHICULE *bus = malloc(sizeof(VEHICULE));
 	bus->id = strdup(id);
-	bus->status = 0;
 	bus->type = 2;
-	bus->longCapability = 2;
 	bus->delay = 3;
 	bus->next = NULL;
 	bus->route = NULL;
-        
-        bus->x=0; 
-        bus->y=0; 
-        bus->dx=1;
-        bus->dy=0;
-        bus->width=20;
-        bus->height=20;    
-        bus->run=true;
-        bus->speed=speed;
+
+    	bus->x=0;
+    	bus->y=0;
+    	bus->dx=1;
+    	bus->dy=0;
+    	bus->width=20;
+    	bus->height=20;
+    	bus->run=true;
+    	bus->speed=speed;
+    	bus->color = color;
+
+
 	return bus;
 }
 
@@ -195,24 +175,11 @@ NODE* createNode(int id, char *name, int capability, int reacheabledNodes[]){
 	node->id = id;
 	node->name = strdup(name);
 	node->capability = capability;
+	node->especial=false;
 
 	//Assignar nodo alcanzables
 	for(int i = 0; i < RN; i++){
 		node->reacheabledNodes[i] = reacheabledNodes[i];
-	}
-
-	//Reservar espacio en memoria para los vehiculos que puede albergar el nodo
-	switch(capability){
-		case 1: {
-			node->vehicule_1 = createCar("new");
-			break;
-		}
-		default:{
-			node->vehicule_1 = createCar("new");
-			node->vehicule_2 = createCar("new");
-			node->vehicule_3 = createCar("new");
-			break;
-		}
 	}
 	return node;
 }
@@ -247,7 +214,7 @@ void releaseBridge(BRIDGE *bridge){
 void displayDestinations(DESTINY *destinations){
     DESTINY *i = destinations;
     for(; i != NULL; i = i->next){
-            printf("DESTINY - NODE NAME:  %s\n", i->node->name);
+            //printf("DESTINY - NODE NAME:  %s\n", i->node->name);
     }
 
 }
@@ -290,30 +257,67 @@ NODE* findNode(int index, THREADVILLE *threadville){
 }
 
 /*
+	Si los semáforos del norte permiten el paso, los semáforos del sur NO
+	Si los semáforos del sur permiten el paso, los semáforos del norte NO 
+*/
+void* semaphoresBridgeControlWait(void *bridge_ptr){
+
+	BRIDGE *bridge = (BRIDGE *)bridge_ptr;
+	int random;
+
+	while(true){
+		random = rand()%40;
+		printf("Cambiando los semáforos en puente %s en %i segundos \n", bridge->id, random);
+		sleep(random);
+		if(bridge->southRightNode->allowTravel){
+			bridge->southRightNode->allowTravel = false;
+			if(bridge->northLeftNode->allowTravel){
+				bridge->northLeftNode->allowTravel = false;
+				}
+			else{
+				bridge->northLeftNode->allowTravel = true;
+			}
+		}else{
+			bridge->southRightNode->allowTravel = true;
+			if(bridge->northLeftNode->allowTravel){
+				bridge->northLeftNode->allowTravel = false;
+				}
+			else{
+				bridge->northLeftNode->allowTravel = true;
+			}
+		}
+	}
+}
+
+/*
 	Semáforos del norte permiten el paso
 	Semáforos del sur NO permiten el paso
 */
 void semaphoresBridgeControlInit(BRIDGE *bridge){
+	bridge->northLeftNode->especial=true;
 	bridge->northLeftNode->allowTravel = true;
-	bridge->southRightNode->allowTravel = false;
-	printf("Bridge = %s\n  North Semaphore = %d, South Semaphore = %d\n", bridge->id, bridge->northLeftNode->allowTravel , bridge->southRightNode->allowTravel );
-}
 
-/*
-	Si los semáforos del norte permiten el paso, los semáforos del sur NO
-	Si los semáforos del sur permiten el paso, los semáforos del norte NO 
-*/
-void semaphoresBridgeControlWait(BRIDGE *bridge){
-	if(bridge->northLeftNode->allowTravel){
-		//car needs to wait
-		bridge->northLeftNode->allowTravel = false;
-		bridge->southRightNode->allowTravel = true;
-	}
-	if(bridge->southRightNode->allowTravel){
-		//car needs to wait
-		bridge->northLeftNode->allowTravel = true;
-		bridge->southRightNode->allowTravel = false;
-	}
+	bridge->southRightNode->especial = true;
+	bridge->southRightNode->allowTravel = false;
+
+	printf("Bridge = %s\nNorth Semaphore = %d, South Semaphore = %d\n", bridge->id, bridge->northLeftNode->allowTravel , bridge->southRightNode->allowTravel );
+
+	int rc;
+	pthread_t northSemaphore_thread;
+	rc = pthread_create(&northSemaphore_thread, NULL, &semaphoresBridgeControlWait, bridge);
+	if (rc)
+    {
+            printf("error, return frim pthread creation\n");
+            exit(4);
+    }
+
+	/*pthread_t southSemaphore_thread;
+	rc = pthread_create(&southSemaphore_thread, NULL, &semaphoresBridgeControlWait, bridge);
+	if (rc)
+    {
+            printf("error, return frim pthread creation\n");
+            exit(4);
+    }*/
 }
 
 #endif
